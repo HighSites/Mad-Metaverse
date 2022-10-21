@@ -60,8 +60,7 @@ const preProd = $.gulp.series (
 
 const prod = $.gulp.series (
     build,
-    zip,
-    gitDeploy
+    zip
 );
 
 const play = server;
