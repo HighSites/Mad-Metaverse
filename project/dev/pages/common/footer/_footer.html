@@ -1,0 +1,20 @@
+<div class="container container--footer">
+	<div class="footer_contacts">
+		{%set contacts = {
+			'discord': 'https://discord.com/',
+			'instagram': 'https://www.instagram.com/',
+			'telegram': 'https://web.telegram.org/k/',
+			'linkedin': 'https://www.linkedin.com',
+			'discord|': 'https://discord.com/',
+			'tiktok': 'https://www.tumblr.com/explore/trending?source=homepage_explore'
+		}%}
+		{# | is added to enable repeats (you can add as many as you want) #}
+		{%for socMedia, socLink in contacts%}
+			<a href="{{socLink}}" target="_blank" rel="norefferrer noopener" class="footer__sign">
+				{%set path = '../svg/footer/' + socMedia | string | capitalize | replace("|", "") + '.svg'%}
+				{%include path %}
+			</a>
+		{%endfor%}
+	</div>
+	<p class="footer__copyright">© mad metaverse 2022. All Rights Reserved.</p>
+</div>

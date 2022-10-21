@@ -1,0 +1,156 @@
+@use '../../common/comps' as *
+
+.container--index--beginning
+	@include avr_mid(padding-bottom, 100px, 175px, 180px)
+	input
+		display: none
+		
+		&:checked + label
+			& > .beginning__stageName
+				&::after
+					transform: translateY(-50%) rotate(1turn)
+					left: calc(100% + rem(18px))
+					background-image: url('@imgs/index/beginning/unfold.svg')
+			& > .beginning__stageDescr
+				max-height: 0
+				overflow: hidden
+
+
+.beginning
+	&__title
+		display: inline-block
+		@include avr_mid(padding-left, 27px, 38px, 51px)
+		@include avr_mid(margin-bottom, 52px, 66px, 115px)
+
+		&::after
+			@include line
+			@include avr_midImp(right, prc(309, 25), prc(477, 168), prc(831, 510))
+			@include avr_midImp(top, - prc(28, 18), - prc(52, 21),  0)
+
+	&__stages
+		display: grid
+		@include avr(gap, 53px, 0px, $endWidth: $widthMid)
+
+	&__stageNum
+		position: relative
+		width: min-content
+		@include avr(font-size, 16px, 22px, $endWidth: $widthMid)
+		@include avr_midImp(letter-spacing, em(7px, 16px), em(7px, 22px), nan)
+		opacity: .5
+
+		.beginning__stage:nth-child(2n+1) &
+			@include avr(margin-left, 25px, 0px, $endWidth:$widthMid)
+
+		&:not(:last-child)
+			@include avr_mid(margin-bottom, 34px, 22px, 5px)
+
+		&::after
+			@include line
+			top: calc(50% - 1px)
+			left: 50%
+			@include avr_midImp(left, calc(100% + prc(24, 10)), nan, nan)
+
+	&__stageName
+		position: relative
+		width: min-content
+		@include avr(margin-left, 30px, 0px, $endWidth:$widthMid)
+		font-family: 'FiraSans', mono-space
+		font-weight: 800
+		@include avr_mid(font-size, 22px, 28px, 42px)
+		text-transform: uppercase
+		&:not(:last-child)
+			@include avr_mid(margin-bottom, 36px, 28px, 30px)
+
+		&::before
+			content: ''
+			display: inline-block
+			position: absolute
+			@include avr(width, 60px, 80px, $endWidth:$widthMid)
+			height: 1px
+			@include avr_midImp(top, calc(50% - 1px), calc(33% - 1px), calc(50% - 1px))
+			left: 100%
+			transform: translateX(avr_exp(18px, 42px, $endWidth:$widthMid))
+			background-color: $colorText
+			opacity: .5
+
+		&::after
+			content: ''
+			display: inline-block
+			position: absolute
+			@include avr(width height, 15px, 20px, $endWidth: $widthMid)
+			@include avr_midImp(top, 50%, 33%, 50%)
+			left: 100%
+			transform: translate(avr_exp(18px + 60px + 6px, 42px + 80px + 8px, $endWidth: $widthMid),-50%)
+			background-image: url('@imgs/index/beginning/fold.svg')
+			background-size: cover
+			@include anim--long(left, background-image, transform)
+				
+	&__stageDescr
+		opacity: .5
+		max-height: 300px
+		overflow: auto
+		@include anim--long(max-height)
+		.beginning__stage:nth-child(2n+1) &
+			@include avr(margin-left, 15px, 0px, $endWidth: $widthMid)
+
+//ADAPTIVITY
+//ADAPTIVITY
+//ADAPTIVITY
+				
+@media (min-width: $widthMid)
+	.beginning
+			&__stage
+				&:not(:first-child)
+					margin-top: -3%
+				&:nth-child(2n+1)
+					padding-right: 60%
+				&:nth-child(2n+0)
+					padding-left: 50%
+
+			&__stageName
+				&::before
+					transform: translateX(42px)
+				&::after
+					transform: translate(42px + 80px + 8px, -50%)
+
+@media (min-width: $widthMax)
+	
+
+	.beginning
+			&__title
+
+			&__stages
+
+			&__stage
+				&:not(:first-child)
+					margin-top: 0
+				&:nth-child(2n+1)
+					padding-right: 0
+					padding-left: 60%
+				&:nth-child(2n+0)
+					padding-left: rem(54px)
+					padding-right: 50%
+				&:nth-child(4n+1)
+					transform: translateX(5%)
+				&:nth-child(4n+2)
+					margin-top: -3%
+				&:nth-child(4n+3)
+					margin-top: -6%
+				&:nth-child(4n+0)
+					transform: translateX(10%)
+					margin-top: -9%
+			&__stageName
+				@include anim--short(margin-bottom)
+
+			&__stageDescr
+				padding-right: 40%
+
+	.container--index--beginning
+		input:checked + label
+			.beginning__stageName
+				margin-bottom: 150px
+
+
+
+
+

@@ -1,0 +1,144 @@
+@use '../../common/comps' as *
+@use '../comps' as index
+@use 'sass:color'
+@use 'sass:math'
+
+.container--index--intro
+	@include avr_mid(padding-top, 78px, 175px, 177px)
+	@include avr_mid(padding-bottom, 244px, 325px, 372px)
+	@include avr_mid(padding-left, 49px, 118px, 257px)
+	display: flex
+	flex-direction: column
+	align-items: start
+
+$animTime: 3s
+$animBreak: 0.5s
+
+[data-glitch]
+	position: relative
+	&::before, &::after
+		content: attr(data-glitch)
+		position: absolute
+		top: 0
+		background-color: $colorBg
+		overflow: hidden
+		clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%)
+
+	&::before
+		left: 1px
+		text-shadow: 1px 0 0 color.adjust($colorAccent,$hue: 180)
+		animation: glitch-noise-1 $animTime + $animBreak infinite linear alternate-reverse
+
+	&::after
+		left: -1px
+		text-shadow: -1px 0 0 $colorAccent
+		animation: glitch-noise-2 $animTime + $animBreak infinite linear alternate-reverse
+
+$endStep: math.div($animTime, $animTime + $animBreak) * 100
+
+@keyframes glitch-noise-1
+	$animSteps: 20
+	$steps: $animSteps + 1
+	@for $i from 0 through $animSteps
+		#{$i*$endStep*(1/$steps)}%
+			$borderFirst: math.random(100) + '%'
+			$borderSecond: math.random(100) + '%'
+			clip-path: polygon(0 #{$borderFirst}, 100% #{$borderFirst}, 100% #{$borderSecond}, 0 #{$borderSecond})
+	#{$endStep + '%'}
+		clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%)
+
+@keyframes glitch-noise-2
+	$animSteps: 20
+	$steps: $animSteps + 1
+	@for $i from 0 through $animSteps
+		#{$i*$endStep*(1/$steps)}%
+			$borderFirst: math.random(100) + '%'
+			$borderSecond: math.random(100) + '%'
+			clip-path: polygon(0 #{$borderFirst}, 100% #{$borderFirst}, 100% #{$borderSecond}, 0 #{$borderSecond})
+	#{$endStep + '%'}
+		clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%)
+
+$animTime: 2s
+$animBreak: 6s
+
+.intro
+		&__subtext
+			font-weight: 600
+			@include avr(font-size, 13px, 22px, $endWidth: $widthMid)
+			@include avr_midImp(letter-spacing, em(4px, 13px), em(4px, 22px), nan)
+			text-align: left
+			text-transform: uppercase
+			white-space: nowrap
+			opacity: .7
+			&:not(:last-child)
+				@include avr_mid(margin-bottom, 10px, 19px, 15px)
+
+		&__title
+			font-weight: 900
+			@include avr_mid(font-size, 40px, 80px, 120px)
+			@include avr_midImp(line-height, em(50px, 40px), em(90px, 80px), em(125px, 120px))
+			text-transform: uppercase
+			margin: 0
+			&:not(:last-child)
+				@include avr_mid(margin-bottom, 40px, 80px, 78px)
+
+		&__invite
+			@include avr_midImp(margin-left, em(7px, 13px), em(18px, 16px), em(24px, 16px))
+
+		&__inviteSign
+			position: relative
+			&::before
+				content: ''
+				position: absolute
+				display: block
+				$prcF: 220%
+				$prcS: 170%
+				$prcT: 220%
+				@include avr_midImp(width height, $prcF, $prcS, $prcT)
+				@include avr_midImp(left top, - ($prcF - 100%)/2, - ($prcS - 100%)/2, - ($prcT - 100%)/2)
+				border-radius: 50%
+				border: 1px solid $colorText
+				opacity: .25
+				animation: $animTime + $animBreak infinite steps(4, end) radio-effect 
+			&::after
+				content: ''
+				position: absolute
+				display: inline-block
+				width: 1px
+				@include avr(height, 100px, 161px, $endWidth: $widthMid)
+				@include avr_midImp(top, 100%, 130%, 195%)
+				left: 50%
+				background-color: $colorText
+				opacity: .25
+				animation: $animTime + $animBreak infinite steps(8, end) radio-effect-stick 
+
+
+@keyframes radio-effect
+	0%
+		transform: none
+	#{$animTime/($animTime + $animBreak) * 100 / 2 + '%'}
+		transform: scale(.5)
+	#{$animTime/($animTime + $animBreak) * 100 + '%'}, 100%
+		transform: none
+
+@keyframes radio-effect-stick
+	0%
+		transform: none
+	#{$animTime/($animTime + $animBreak) * 100 / 2 + '%'}
+		transform: scale(.1) translateY(100%)
+	#{$animTime/($animTime + $animBreak) * 100 + '%'}, 100%
+		transform: none
+
+//ADAPTIVITY
+//ADAPTIVITY
+//ADAPTIVITY
+
+@media (min-width: em($widthMid))
+	.intro
+			&__subtext
+				span
+					padding-inline: em(10px, 22px)
+
+
+
+

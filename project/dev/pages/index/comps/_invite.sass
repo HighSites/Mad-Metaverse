@@ -1,0 +1,35 @@
+@use '../../common/comps' as *
+
+.invite
+	display: flex
+	align-items: center
+	@include adapt_val_rem(gap, 5px, 16px, $endWidth: $widthMid)
+	
+	svg
+		height: min-content
+		@include adapt_val_rem(width, 36px, 66px, $endWidth: $widthMid)
+		& > *
+			@include anim--short(fill, stroke)
+
+	&__text
+		font-weight: 700
+		@include avr(font-size, 13px, 22px, $endWidth: $widthMid)
+		letter-spacing: 4px
+		text-transform: uppercase
+		@include anim--short(color)
+
+	&__sign
+		line-height: 0
+
+.invite:hover 
+	cursor: pointer
+	.circle
+		stroke: $colorAccent
+
+.invite:disabled
+	.circle
+		stroke: $colorAccent
+	.triangle
+		fill: $colorText
+	&__text
+		color: $colorAccent

@@ -1,0 +1,48 @@
+@use '../../common/comps' as *
+
+.partners
+	display: none
+
+@media (min-width: $widthMax)
+	.container--index--partners
+		padding-inline: rem(142px)
+		padding-bottom: rem(160px)
+
+	.partners
+		display: block
+
+		&__subtext
+			position: relative
+			display: inline-block
+			font-size: rem(22px)
+			letter-spacing: em(7px, 22px)
+			line-height: 1em
+			text-transform: uppercase
+			opacity: .5
+
+			&::after
+				@include line
+				background-color: $colorText
+				opacity: .5
+				top: calc(50% - 1px)
+				left: prc(72, 107)
+
+		&__title
+			&:not(:last-child)
+				margin-bottom: rem(100px)
+			&::before
+				top: -150%
+
+		&__partners
+			display: grid
+			grid-template-columns: repeat(3, 1fr)
+			gap: rem(100px) rem(75px)
+			align-items: center
+				
+		&__partner
+			text-align: center
+		&__sign
+			&:not(:last-child)
+				margin-bottom: rem(40px)
+		&__name
+

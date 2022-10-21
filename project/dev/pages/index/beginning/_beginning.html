@@ -1,0 +1,29 @@
+<div class="container container--index container--index--beginning">
+	<h1 class="title title--animated beginning__title _unvisible" data-to-animate>And it so begins</h1>
+	{%set beginningStages = {
+		'genesis': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+		aliqua. Ut enim ad minim veniam',
+		'evolution': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+		aliqua. Ut enim ad minim veniam', 
+		'divergence': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+		aliqua. Ut enim ad minim veniam',
+		'mutation': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+		aliqua. Ut enim ad minim veniam'
+	}%}
+	<div class="beginning__stages">
+		{%for title, description in beginningStages%}
+		<div class="beginning__stage">
+			{%if loop.index < 10%}
+				<h4 class="beginning__stageNum">00{{loop.index}}</h4>
+				{%else%}
+				<h4 class="beginning__stageNum">0{{loop.index}}</h4>
+			{%endif%}
+			<input type="checkbox" id="stage{{loop.index}}">
+			<label for="stage{{loop.index}}">
+				<h3 class="beginning__stageName">{{title}}</h3>
+				<p class="thinText beginning__stageDescr">{{description}}</p>
+			</label>
+		</div>
+		{%endfor%}
+	</div>
+</div>

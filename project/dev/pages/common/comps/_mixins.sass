@@ -1,0 +1,119 @@
+@use './_variables' as *
+@use 'sass:math'
+@use 'sass:string'
+
+@mixin anim--short($props...)
+	$exp: ""
+	$space: " "
+	$comma: ", "
+	@for $i from 1 through length($props)
+		$exp: $exp + $comma + #{nth($props, $i)} + $space + $anim_time--short
+	$exp: string.slice($exp, 2)
+	transition: string.unquote($exp)
+
+@mixin anim--long($props...)
+	$exp: ""
+	$space: " "
+	$comma: ", "
+	@for $i from 1 through length($props)
+		$exp: $exp + $comma + #{nth($props, $i)} + $space + $anim_time--long
+	$exp: string.slice($exp, 2)
+	transition: string.unquote($exp)
+
+@mixin anim--anim($props, $delay: 0s)
+	$exp: ""
+	$space: " "
+	$comma: ", "
+	@for $i from 1 through length($props)
+		$exp: $exp + $comma + #{nth($props, $i)} + $space + $anim_time--anim + $space + $delay
+	$exp: string.slice($exp, 2)
+	transition: string.unquote($exp)
+
+@mixin adapt_val_rem ($props, $initSize, $endSize, $initWidth: $widthMin, $endWidth: $widthMax, $type: 0)
+	$difSize: math.div(($endSize - $initSize), 1px)
+	$difWidth: math.div(($endWidth - $initWidth), 1px)
+	$endSize: rem($endSize)
+	$exp: calc(#{$endSize} - (#{$difSize}*(#{$endWidth} - 100vw)/#{$difWidth}))
+	@for $i from 1 through length($props)
+		// @if $type==0 --> stops growing after endWidth
+		// @if $type==1 --> always
+		#{nth($props, ($i))}: $exp
+		@if $type == 0
+			@media (min-width: #{$endWidth})
+				#{nth($props, ($i))}: $endSize
+
+@function avr_exp ($initSize, $endSize, $initWidth: $widthMin, $endWidth: $widthMax, $type: 0)
+	$difSize: math.div(($endSize - $initSize), 1px)
+	$difWidth: math.div(($endWidth - $initWidth), 1px)
+	$endSize: rem($endSize)
+	$exp: calc(#{$endSize} - (#{$difSize}*(#{$endWidth} - 100vw)/#{$difWidth}))
+	@return $exp
+
+@mixin avr_mid ($props, $minSize, $midSize, $maxSize, $minWidth: $widthMin, $midWidth: $widthMid, $maxWidth: $widthMax)
+	$difSize: math.div(($midSize - $minSize), 1px)
+	$difWidth: math.div(($midWidth - $minWidth), 1px)
+	$topSize: rem($midSize)
+	$exp: calc(#{$topSize} - (#{$difSize}*(#{$midWidth} - 100vw)/#{$difWidth}))
+	@for $i from 1 through length($props)
+		#{nth($props, ($i))}: $exp
+	$difSize: math.div(($maxSize - $midSize), 1px)
+	$difWidth: math.div(($maxWidth - $midWidth), 1px)
+	$topSize: rem($maxSize)
+	$exp: calc(#{$topSize} - (#{$difSize}*(#{$maxWidth} - 100vw)/#{$difWidth}))
+	@media (min-width: #{em($midWidth)})
+		@for $i from 1 through length($props)
+			#{nth($props, ($i))}: $exp
+	@media (min-width: #{em($maxWidth)})
+		@for $i from 1 through length($props)
+			#{nth($props, ($i))}: $maxSize
+
+@mixin avr ($props, $initSize, $endSize, $initWidth: $widthMin, $endWidth: $widthMax, $type: 0)
+	$difSize: math.div(($endSize - $initSize), 1px)
+	$difWidth: math.div(($endWidth - $initWidth), 1px)
+	$endSize: rem($endSize)
+	$exp: calc(#{$endSize} - (#{$difSize}*(#{$endWidth} - 100vw)/#{$difWidth}))
+	@for $i from 1 through length($props)
+		// @if $type==0 --> stops growing after endWidth
+		// @if $type==1 --> always
+		#{nth($props, ($i))}: $exp
+		@if $type == 0
+			@media (min-width: #{em($endWidth)})
+				#{nth($props, ($i))}: $endSize
+
+@mixin avr_midImp ($props, $minSize, $midSize, $maxSize, $minWidth: $widthMin, $midWidth: $widthMid, $maxWidth: $widthMax)
+	@for $i from 1 through length($props)
+		#{nth($props, ($i))}: $minSize
+	@if not ($midSize == nan)
+		@media (min-width: #{em($midWidth)})
+			@for $i from 1 through length($props)
+				#{nth($props, ($i))}: $midSize
+	@if not ($maxSize == nan)
+		@media (min-width: #{em($maxWidth)})
+			@for $i from 1 through length($props)
+				#{nth($props, ($i))}: $maxSize
+
+
+@function prc($base, $part)
+	$res: math.div($part, $base) * 100%
+	@return $res
+
+@function rem($px)
+	$val: math.div($px, 16px) * 1rem
+	@return $val
+
+@function em($initSize, $baseSize: 16px)
+	$res: math.div($initSize, $baseSize) * 1em
+	@return $res
+
+//FOR A PROJECT
+
+@mixin line
+	content: ''
+	display: inline-block
+	position: absolute
+	width: rem(80px)
+	height: 1px
+	background-color: $colorAccent
+	
+
+		 

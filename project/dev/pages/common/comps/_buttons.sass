@@ -1,0 +1,19 @@
+@use './variables' as *
+@use './mixins' as *
+	
+.button
+	@include avr_mid (padding-inline, 24px, 45px, 56px)
+	@include avr_mid (padding-block, 10px, 14px, 20px)
+	font: 
+		family: 'Oxanium', mono-space
+		weight: 400
+	@include avr_mid(font-size, 12px, 17px, 20px)
+	text-transform: uppercase
+	background-color: $colorText
+	clip-path: polygon(0 0, 94% 0, 100% 33%, 100% 100%, 6% 100%, 0 66%)
+	white-space: nowrap
+	@include anim--short(color, background-color)
+
+	&:hover
+		background-color: $colorAccent
+		color: $colorText

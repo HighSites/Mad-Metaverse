@@ -1,0 +1,89 @@
+<div class="container container--index container--index--team">
+	<h1 data-to-animate class="title title--animated _unvisible team__title">team</h1>
+	<div class="team__members">
+		{%set members = [
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			},
+			{
+				name: 'name',
+				surname: 'surname',
+				position: 'MAD Product Nucleus',
+				InLink: 'https://www.linkedin.com',
+				avatar: 'nameSurname'
+			}
+		]%}
+		{%for member in members%}
+		<div data-to-animate="1" class="team__member member _unvisible">
+			<img class="member__img" src="@imgs/index/team/{{member.avatar}}.jpg" alt="{{member.name}}">
+			<h4 class="member__name">{{member.name}} {{member.surname}}</h4>
+			<div class="member__passport">
+				<p class="member__position">{{member.position}}</p>
+				<a href="{{member.InLink}}" target="_blank" rel="norefferrer noopener">
+					<img class="member__InIcon" src="@imgs/index/team/linkedIn.svg" alt="LinkedIn link">
+				</a>
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+</div>

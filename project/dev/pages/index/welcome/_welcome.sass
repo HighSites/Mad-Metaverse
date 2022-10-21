@@ -1,0 +1,199 @@
+@use '../../common/comps' as *
+
+.container--index--welcome
+	@include avr_mid(padding-bottom, 121px, 140px, 70px)
+
+.welcome
+		&__titlePhrase
+			position: relative
+			&:not(:last-child)
+				@include avr_mid(margin-bottom, 77px, 61px, 96px)
+			&::before
+				@include line
+				@include avr_midImp(top, - prc(71, 17), - prc(112, 19), 0)
+				@include avr_midImp(left, prc(309, 46), prc(565, 65), prc(751, 120))
+
+		&__title
+			margin-left: em(5px, 25px)
+			&:not(:last-child)
+				@include avr_midImp(margin-bottom, em(12px, 25px), em(20px, 45px), em(8px, 80px))
+
+		&__titleContinuation
+			@include avr_mid(font-size, 18px, 35px, 45px)
+			text-align: right
+
+		&__passport
+			position: relative
+			text-align: right
+			@include avr_midImp(padding-right, em(3px, 13px), em(19px, 16px), nan)
+			&:not(:last-child)
+				@include avr_mid(margin-bottom, 45px, 104px, 19px)
+
+		&__name
+			&:not(:last-child)
+				@include avr_midImp(margin-bottom, em(14px, 12px), em(13px, 22px), em(16px, 22px))
+
+		&__birthDate
+			font-family: 'FiraSans', mono-space
+
+			span
+				font-weight: 250
+
+		&__position
+			position: absolute
+			writing-mode: vertical-rl
+			transform: rotate(180deg)
+			@include avr_midImp(right, prc(308, 5), prc(640, 3), prc(1112, 40))
+			top: calc(100% + prc(56, 30))
+			white-space: nowrap
+			
+		&__descr
+			position: relative
+			@include avr_midImp(width, prc(309, 225), prc(640, 300), prc(1112, 295))
+			@include avr_mid(left, 28px, 303px, 598px)
+			@include avr_midImp(letter-spacing, em(6px, 13px), em(8px, 16px), nan)
+			&:not(:last-child)
+				@include avr_mid(margin-bottom, 136px, 108px, 184px)
+
+		&__info
+			display: grid
+			@include avr_mid(gap, 34px, 94px, 60px)
+
+		&__feature
+			padding-left: prc(309, 7)
+
+		&__ftrTitle
+			display: inline-block
+			&:not(:last-child)
+				@include avr(margin-bottom, 27px, 34px, $endWidth: $widthMid)
+
+			span
+				color: $colorAccent
+
+		&__ftrDescr
+			padding-right: prc(302, 10)
+			@include avr(font-size, 13px, 18px, $endWidth: $widthMid)
+			@include avr_midImp(letter-spacing, em(8px, 13px), em(9px, 18px), nan)
+
+
+//ADAPTIVITY
+//ADAPTIVITY
+//ADAPTIVITY
+
+@media (min-width: $widthMid)
+	.container--index--welcome
+		text-align: right
+
+	.welcome
+			&__titlePhrase
+				display: inline-block
+				width: prc(640, 565)
+				text-align: left
+				padding-right: em(25px, 16px)
+
+			&__name
+				position: relative
+				&::before
+					content: ''
+					display: inline-block
+					position: absolute
+					width: rem(80px)
+					height: 1px
+					top: 50%
+					left: rem(50px)
+					background-color: $colorText
+
+			&__birthDate
+				padding-right: em(15px, 40px)
+				font-size: rem(40px)
+
+			&__descr
+				text-align: left
+
+			&__feature
+				padding-left: 0
+				text-align: left
+				& > *
+					width: prc(640, 374)
+
+				&:nth-child(2n+1) > *
+					@include avr(margin-left, 62px, 22px, $widthMid)
+				&:nth-child(2n+0)
+					text-align: right
+					@include avr(margin-left, 0px, 40px, $widthMid)
+
+			&__ftrTitle
+				text-align: left
+
+			&__ftrDescr
+				display: inline-block
+				padding-right: 0
+				text-align: left
+
+@media (min-width: $widthMax)
+	.container--index--welcome
+
+	.welcome
+			&__titlePhrase
+				width: prc(1112, 751)
+				right: rem(151px)
+
+			&__name
+				display: inline-block
+				padding-right: rem(9px)
+				&::before
+					left: auto
+					right: calc(100% + rem(24px))
+
+			&__birthDate
+
+			&__position
+				top: calc(100% + prc(87, 24))
+
+			&__descr
+				line-height: em(19px, 16px)
+
+			&__info
+				grid-template-columns: repeat(2, 1fr)
+				margin-right: rem(171px)
+				row-gap: rem(33px)
+
+			&__feature
+				&:nth-child(2n+0)
+					text-align: left
+
+					.welcome__ftrTitle
+						width: 100%
+
+					.welcome__ftrDescr
+						width: prc(400, 330)
+
+				&:nth-child(4n+0)
+					position: relative
+					left: prc(440, 90)
+				&:nth-child(4n+2)
+					position: relative
+					top: - prc(893, 105)
+				&:nth-child(4n+3)
+					position: relative
+					left: prc(941, 170)
+					top: prc(893, 180)
+					&:not(:last-child)
+						margin-bottom: rem(300px)
+
+			&__ftrTitle
+				width: prc(440, 400)
+
+				span
+					color: inherit
+					@include anim--short(color)
+
+				&:hover
+					span
+						color: $colorAccent
+
+			&__ftrDescr
+				width: prc(440, 330)
+
+
+

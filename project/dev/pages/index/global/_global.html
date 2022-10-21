@@ -1,0 +1,25 @@
+{% extends "sups/html-templates/_default.html" %}
+
+{% block title %}
+Mad Metaverse
+{% endblock title %}
+
+{% block page_content %}
+<main class="main--index">
+	<section class="index__section intro">
+		{% include "pages/index/intro/_intro.html" %}
+	</section>
+	<section class="index__section welcome">
+		{% include "pages/index/welcome/_welcome.html" %}
+	</section>
+	<section class="index__section beginning">
+		{% include "pages/index/beginning/_beginning.html" %}
+	</section>
+	<section class="index__section partners">
+		{% include "pages/index/partners/_partners.html" %}
+	</section>
+	<section class="index__section team">
+		{% include "pages/index/team/_team.html" %}
+	</section>
+</main>
+{% endblock page_content %}

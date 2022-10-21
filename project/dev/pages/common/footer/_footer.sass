@@ -1,0 +1,31 @@
+@use '../comps' as *
+
+.container--footer
+	display: none
+
+@media (min-width: $widthMid)
+	.container--footer
+		display: block
+
+	.footer
+			&_contacts
+				margin: auto
+				display: flex 
+				@include avr(gap, 31px, 28px, $widthMid)
+				@include avr(margin-bottom, 66px, 84px, $widthMid)
+
+			&__sign
+				svg
+					width: rem(50px)
+
+			&__copyright
+				margin-bottom: rem(74px)
+				font-weight: 300
+				font-size: rem(13px)
+				letter-spacing: em(1px, 13px)
+				text-align: center
+				text-transform: uppercase
+				opacity: .5
+
+
+

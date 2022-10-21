@@ -1,0 +1,30 @@
+@use '../comps' as *
+
+body
+	background-color: $colorBg
+	@include avr(font-size, 13px, 16px, $endWidth: $widthMid)
+	font:
+		family: 'Montserrat', monospace
+		weight: 400
+	color: $colorText
+	&.lock
+		overflow: hidden
+
+.wrapper
+	position: relative
+	min-height: 100vh
+	overflow: hidden
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+
+main 
+	flex-grow: 1
+
+.container
+	position: relative
+	max-width: $widthMax
+	margin: auto
+	@include avr_mid(padding-inline, 33px, 52px, 84px)
+		

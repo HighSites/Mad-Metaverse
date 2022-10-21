@@ -1,0 +1,35 @@
+<div class="container container--index container--index--welcome">
+	<div class="welcome__titlePhrase">
+		<h1 class="title--animated title welcome__title _unvisible" data-to-animate>welcome</h1>
+		<h1 class="title welcome__titleContinuation">to the mad metaverse</h1>
+	</div>
+	<div class="welcome__passport">
+		<p class="thinTitle welcome__name">mad metasciencist mint</p>
+		<h1 class="title welcome__birthDate">Q1 <span>|</span> 2022</h1>
+		<p class="thinText welcome__position">34.0501 N +118.244°6 R</p>
+	</div>
+	<p class="brightText welcome__descr">
+		A collaborative gamified Metaverse, 
+		for all NFT's & crypto. Mint your MAD Metascientist and start
+		playing, trading,earning and battling in the brand new 
+		play-to-earn game of evolution.
+	</p>
+	<div class="welcome__info">
+		{%set welcomeFtrs = {
+			'it all starts with your metasciencist': 'Every player needs a MAD Metascientist to enter the first stage of the MAD Metaverse and to start experimenting in the
+			lab to evolve cells into new biodigital creatures.',
+			'Earn as you play': 'In your lab you will breed scarce Nanocells and one of a kind mutated versions of your third party NFT collectibles for
+			you to sell or trade. You will also earn Metafuel (native ERC-20 tokens) as you win battles.',
+			'Give life to your NFTs & Crypto': 'MAD Metascientists allow you to interact with and leverage your existing art & collectibles to enhance gameplay, evolve
+			your Metacells and earn crypto.',
+			'Build the greatest tribe': 'Breed and trade your cells to form the ultimate tribe. Who knows what your cells could evolve into next? New scarce
+			attributes? Powerful skills? Or even a completely new species - the possibilities are endless.'
+		}%}
+		{%for title, description in welcomeFtrs%}
+		<div class="welcome__feature">
+			<h2 class="title2 welcome__ftrTitle">{{title}}<span>//</span></h2>
+			<p class="brightText welcome__ftrDescr">{{description}}</p>
+		</div>
+		{%endfor%}
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container container--index container--index--partners">
+	<h4 class="partners__subtext">our</h4>
+	<h1 data-to-animate class="title title--animated _unvisible partners__title">Partners//</h1>
+	<div class="partners__partners">
+		{%set partnersNames = ['cyber unit', 'kevuru games', 'polygon', 'mak capital', 'x', 'crft video']%}
+		{%for name in partnersNames%}
+		<div class="partners__partner">
+			<img class="partners__sign" src="@imgs/index/partners/{{name | replace(" ", "-")}}.svg" alt="{{name}}">
+			<h4 class="thinText partners__name">{{name}}</h4>
+		</div>
+		{%endfor%}
+	</div>
+</div>

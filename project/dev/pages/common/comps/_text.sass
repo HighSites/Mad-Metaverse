@@ -1,0 +1,55 @@
+@use './mixins' as *
+@use './variables' as *
+
+.title
+	font-weight: 800
+	@include avr_mid(font-size, 25px, 45px, 80px)
+	text-transform: uppercase
+	margin: 0
+
+	&--animated
+		position: relative
+
+		&::before
+			content: ''
+			display: inline-block
+			position: absolute
+			width: 100%
+			height: 100%
+			top: -100%
+			background-color: $colorAccent
+			mix-blend-mode: multiply
+			@include anim--anim(top)
+	
+		&._unvisible
+			&::before
+				top: 100%
+
+.title2
+	font-weight: 800
+	@include avr_mid(font-size, 22px, 28px, 35px)
+	@include avr_midImp(line-height, em(32px, 22px), em(44px, 28px), em(44px, 35px))
+	text-transform: uppercase
+	margin: 0
+
+.thinTitle
+	@include avr(font-size, 13px, 22px, $endWidth: $widthMid)
+	@include avr_midImp(letter-spacing, em(5px, 13px), em(7.33px, 22px), nan)
+	text-transform: uppercase
+	opacity: .5
+
+.thinText
+	@include avr(font-size, 13px, 18px, $endWidth: $widthMid)
+	@include avr_midImp(letter-spacing, em(8px, 13px), em(8px, 18px), nan)
+	letter-spacing: em(8px)
+	text-transform: uppercase
+	opacity: .5
+
+.brightText
+	font-family: 'FiraSans', mono-space
+	font-weight: 400
+	@include avr(font-size, 13px, 16px, $endWidth: $widthMid)
+	@include avr_midImp(line-height, em(16px, 13px), em(19px, 16px), em(22px, 18px))
+	@include avr_midImp(letter-spacing, em(8px, 13px), em(8px, 16px), em(8px, 18px))
+	text-transform: uppercase
+

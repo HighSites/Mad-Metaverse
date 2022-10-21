@@ -1,0 +1,114 @@
+@use '../comps' as *
+
+header
+	width: 100%
+	z-index: 10
+
+.container--header
+	position: relative
+	width: 100%
+	@include avr_mid(height, 61px, 94px, 124px)
+	@include avr_mid(padding-right, 18px, 34px, 38px)
+	display: flex
+	flex-direction: row
+	justify-content: space-between
+	align-items: center
+
+.nav
+	&__button
+		position: relative
+		z-index: 2
+		padding: 10px
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+		gap: 5px
+		font-size: 0
+		line-height: 0
+		@include anim--short(transform)
+
+		span
+			@include anim--short(transform)
+		&._toggleActive span
+			transform: rotate(-45deg)
+			&:first-child
+				transform: translateY(6px) rotate(45deg)
+			&:last-child
+				transform: translateY(-6px) rotate(-45deg)
+
+	&__links
+		position: absolute
+		z-index: 1
+		max-height: calc(100vh	- 12px)
+		right: 100%
+		bottom: 100%
+		overflow: auto
+		@include anim--short(transform)
+		&._toggleActive
+			transform: translate(calc(100% + rem(12px)), calc(100% + rem(12px)))
+
+
+.header
+	&__navButton
+		padding-left: 4px
+
+		&._toggleActive
+			transform: translateX(75vw)
+		
+		span
+			position: relative
+			left: -4px
+			padding: .5px 9.5px
+			background-color: $colorText
+		
+		&._toggleActive span
+			background-color: $colorBg
+	
+	&__navLinks
+		width: prc(375, 351)
+		padding: 30px
+		padding-left: 50px
+		border-radius: 15px
+		background: rgba($colorText, .9)
+	
+	&__navLink
+		padding: 10px 0
+		color: $colorTextDark
+		@include anim--short(color)
+		&:hover
+			color: $colorAccent
+
+
+// ADAPTIVITY
+// ADAPTIVITY
+// ADAPTIVITY
+
+
+@media (min-width: em($widthMid))
+	.nav
+		flex-grow: 1
+
+		&__button
+			display: none
+
+		&__links
+			position: relative
+			right: auto
+			bottom: auto
+
+		&__link
+			display: inline-block
+
+	.header
+		&__navLinks
+			width: auto
+			padding: 0
+			background-color: transparent
+			white-space: nowrap
+
+		&__navLink
+			color: $colorText
+			padding: 0
+			&:not(:last-child)
+				margin-right: rem(55px)
